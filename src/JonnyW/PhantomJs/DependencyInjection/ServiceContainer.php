@@ -49,11 +49,11 @@ class ServiceContainer extends ContainerBuilder
      * Load service container.
      *
      * @access public
-     * @param string $file
+     * @param $file
      * @return void
      * @throws \Exception
      */
-    public function load(string $file)
+    public function load($file)
     {
         $loader = new YamlFileLoader($this, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('config.yml');
