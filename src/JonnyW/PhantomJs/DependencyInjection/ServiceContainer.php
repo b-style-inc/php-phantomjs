@@ -31,14 +31,15 @@ class ServiceContainer extends ContainerBuilder
      * Get singleton instance
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Client
+     * @return ServiceContainer
+     * @throws \Exception
      */
     public static function getInstance()
     {
         if (!self::$instance instanceof ServiceContainer) {
 
             self::$instance = new ServiceContainer();
-            self::$instance->load();
+            self::$instance->load('');
         }
 
         return self::$instance;
@@ -48,9 +49,11 @@ class ServiceContainer extends ContainerBuilder
      * Load service container.
      *
      * @access public
+     * @param string $file
      * @return void
+     * @throws \Exception
      */
-    public function load()
+    public function load(string $file)
     {
         $loader = new YamlFileLoader($this, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('config.yml');
